@@ -8,26 +8,12 @@ class MusicAlbum < Item
   end
 
   def initialize(genre, author, source, label, publish_date, on_spotify, archived = false)
-    @id = next_id
     super(genre, author, source, label, publish_date, archived)
     @on_spotify = on_spotify
     self.class.music_album_instances << self
   end
 
-  def next_id
-    file = File.read('musicAlbum.json')
-    musicAlbums = JSON.parse(file)
-    return 1 if musicAlbums.empty?
-
-    max_id = musicAlbums.max_by { |musicAlbum| musicAlbum['id'] }['id']
-    max_id + 1
-  end
-
-  def to_s
-    "#{@id} - #{on_spotify ? 'Available' : 'Not available'} on Spotify"
-  end
-
-    def self.find_by_id(id)
+  def self.find_by_id(id)
     music_album_instances.find { |musicAlbum| musicAlbum.id == id }
   end
 

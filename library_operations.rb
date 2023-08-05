@@ -98,12 +98,12 @@ class LibraryOperations
   def exit_program
 
     @book_operations.save
-    @miusic_album_operations.save
+    @music_album_operations.save
     @movie_operations.save
     @game_operations.save
     @genre_operations.save
     @label_operations.save
-    @author_operarions.save
+    @author_operations.save
     @source_operations.save
     puts 'Goodbye!'
     exit
