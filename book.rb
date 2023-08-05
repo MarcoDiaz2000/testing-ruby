@@ -7,21 +7,11 @@ class Book < Item
     attr_accessor :book_instances
   end
 
-  def initialize(genre, author, source, label, publish_date, publisher, cover_state, archived = false)
-    @id = next_id
-    super(genre, author, source, label, publish_date, archived)
+  def initialize(json_file, genre, author, source, label, publish_date, publisher, cover_state, archived = false)
+    super(json_file, genre, author, source, label, publish_date, archived)
     @publisher = publisher
     @cover_state = cover_state
     self.class.book_instances << self
-  end
-
-  def next_id
-    file = File.read('book.json')
-    books = JSON.parse(file)
-    return 1 if books.empty?
-
-    max_id = books.max_by { |book| book['id'] }['id']
-    max_id + 1
   end
 
   def self.find_by_id(id)

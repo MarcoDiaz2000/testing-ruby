@@ -7,24 +7,12 @@ class Game < Item
     attr_accessor :game_instances
   end
 
-  def initialize(genre, author, source, label, publish_date, multiplayer, last_played_at, archived = false)
-    @id = next_id
-    super(genre, author, source, label, publish_date, archived)
+  def initialize(json_file, genre, author, source, label, publish_date, multiplayer, last_played_at, archived = false)
+    super(json_file, genre, author, source, label, publish_date, archived)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
     self.class.game_instances << self
   end
-
-  def next_id
-    file = File.read('game.json')
-    games = JSON.parse(file)
-    return 1 if games.empty?
-
-    max_id = games.max_by { |game| game['id'] }['id']
-    max_id + 1
-  end
-
-
 
   def self.find_by_id(id)
     game_instances.find { |game| game.id == id }

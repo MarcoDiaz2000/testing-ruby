@@ -21,13 +21,11 @@ class MusicAlbumOperations
 
   def list
     @albums.each do |album| 
-      puts "id: #{album.id} - #{album.on_spotify ? 'Available' : 'Not available'} on Spotify - Genre: #{album.genre.name} - Author: #{album.author.first_name} #{album.author.last_name} - Source: #{album.source.name} - Label: #{album.label.title} #{album.label.color_name}"
+      puts "id: #{album.id} - #{album.on_spotify ? 'Available' : 'Not available'} on Spotify - Genre: #{album.genre.name} - Author: #{album.author.first_name} #{album.author.last_name} - Source: #{album.source.name} - Label: #{album.label.title} #{album.label.color_name} - Published: #{album.publish_date}"
     end
   end
 
   def add
-    puts 'Is the album available on Spotify? (Y/N):'
-    on_spotify = gets.chomp.downcase == 'y' ? true : false
 
     genre = @genre_operations.list
 
@@ -37,8 +35,13 @@ class MusicAlbumOperations
 
     label = @label_operations.list
 
-    publish_date = Date.today
+    puts 'Enter the publish date of the album (YYYY-MM-DD):'
+    publish_date_input = gets.chomp
+    publish_date = Date.parse(publish_date_input)
 
+    puts 'Is the album available on Spotify? (Y/N):'
+    on_spotify = gets.chomp.downcase == 'y' ? true : false
+  
     album = MusicAlbum.new('musicAlbum.json', genre, author, source, label, publish_date, on_spotify)
     @albums << album
     puts 'Album added successfully'

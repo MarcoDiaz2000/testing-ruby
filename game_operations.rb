@@ -20,38 +20,33 @@ class GameOperations
   end
 
   def list
-    @games.each { |game| puts "#{game.id}. #{game.name} - Multiplayer: #{game.multiplayer ? 'Yes' : 'No'} - Last played at: #{game.last_played_at}" }
+    @games.each do |game| 
+      puts "id: #{game.id} - Multiplayer: #{game.multiplayer ? 'Yes' : 'No'} - Last played at: #{game.last_played_at} - Genre: #{game.genre.name} - Author: #{game.author.first_name} #{game.author.last_name} - Source: #{game.source.name} - Label: #{game.label.title} #{game.label.color_name} - Published: #{game.publish_date}"
+    end
   end
 
   def add
-    puts 'Enter the game name:'
-    name = gets.chomp
 
     puts 'Does the game support multiplayer? (Y/N):'
     multiplayer = gets.chomp.downcase == 'y' ? true : false
 
     puts 'Enter the last played date (YYYY-MM-DD):'
-    last_played_at = Date.parse(gets.chomp)
+    last_played_at_input = gets.chomp
+    last_played_at = Date.parse(last_played_at_input)
 
-    puts 'Enter the genre id:'
-    genre_id = gets.chomp.to_i
-    genre = @genre_operations.find_by_id(genre_id)
+    genre = @genre_operations.list
 
-    puts 'Enter the author id:'
-    author_id = gets.chomp.to_i
-    author = @author_operations.find_by_id(author_id)
+    author = @author_operations.list
 
-    puts 'Enter the source id:'
-    source_id = gets.chomp.to_i
-    source = @source_operations.find_by_id(source_id)
+    source = @source_operations.list
 
-    puts 'Enter the label id:'
-    label_id = gets.chomp.to_i
-    label = @label_operations.find_by_id(label_id)
+    label = @label_operations.list
 
-    publish_date = Date.today
+    puts 'Enter the publish date of the album (YYYY-MM-DD):'
+    publish_date_input = gets.chomp
+    publish_date = Date.parse(publish_date_input)
 
-    game = Game.new(genre, author, source, label, publish_date, name, multiplayer, last_played_at)
+    game = Game.new('game.json', genre, author, source, label, publish_date, multiplayer, last_played_at)
     @games << game
     puts 'Game added successfully'
   end

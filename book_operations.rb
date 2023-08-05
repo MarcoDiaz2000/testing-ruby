@@ -20,7 +20,9 @@ class BookOperations
   end
 
   def list
-    @books.each { |book| puts "#{book.id}. #{book.publisher} - #{book.cover_state}" }
+    @books.each do |book| 
+      puts "id: #{book.id}, Publisher #{book.publisher}, Cover #{book.cover_state} - Genre: #{book.genre.name} - Author: #{book.author.first_name} #{book.author.last_name} - Source: #{book.source.name} - Label: #{book.label.title} #{book.label.color_name} - Published: #{book.publish_date}"
+    end
   end
 
   def add
@@ -38,9 +40,11 @@ class BookOperations
 
     label = @label_operations.list
   
-    publish_date = Date.today
+    puts 'Enter the publish date of the album (YYYY-MM-DD):'
+    publish_date_input = gets.chomp
+    publish_date = Date.parse(publish_date_input)
   
-    book = Book.new(genre, author, source, label, publish_date, publisher, cover_state)
+    book = Book.new('book.json', genre, author, source, label, publish_date, publisher, cover_state)
     @books << book
     puts 'Book added successfully'
   end

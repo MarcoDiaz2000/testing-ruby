@@ -7,22 +7,11 @@ class Movie < Item
     attr_accessor :movie_instances
   end
 
-  def initialize(genre, author, source, label, publish_date, silent, archived = false)
-    @id = next_id
-    super(genre, author, source, label, publish_date, archived)
+  def initialize(json_file, genre, author, source, label, publish_date, silent, archived = false)
+    super(json_file, genre, author, source, label, publish_date, archived)
     @silent = silent
     self.class.movie_instances << self
   end
-
-  def next_id
-    file = File.read('movie.json')
-    movies = JSON.parse(file)
-    return 1 if movies.empty?
-
-    max_id = movies.max_by { |movie| movie['id'] }['id']
-    max_id + 1
-  end
-
 
   def self.find_by_id(id)
     movie_instances.find { |movie| movie.id == id }

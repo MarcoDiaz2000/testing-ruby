@@ -7,8 +7,8 @@ class MusicAlbum < Item
     attr_accessor :music_album_instances
   end
 
-  def initialize(genre, author, source, label, publish_date, on_spotify, archived = false)
-    super(genre, author, source, label, publish_date, archived)
+  def initialize(json_file, genre, author, source, label, publish_date, on_spotify, archived = false)
+    super(json_file, genre, author, source, label, publish_date, archived)
     @on_spotify = on_spotify
     self.class.music_album_instances << self
   end

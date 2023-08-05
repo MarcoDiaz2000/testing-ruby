@@ -20,35 +20,29 @@ class MovieOperations
   end
 
   def list
-    @movies.each { |movie| puts "#{movie.id}. #{movie.name} - Silence: #{movie.silent ? 'Yes' : 'No'}" }
+    @movies.each do |movie| 
+      puts "id: #{movie.id} - Silence: #{movie.silent ? 'Yes' : 'No'} - Genre: #{movie.genre.name} - Author: #{movie.author.first_name} #{movie.author.last_name} - Source: #{movie.source.name} - Label: #{movie.label.title} #{movie.label.color_name} - Published: #{movie.publish_date}"
+    end
   end
+  
 
   def add
-    puts 'Enter the movie name:'
-    name = gets.chomp
-
     puts 'Is the movie silent? (Y/N):'
     silent = gets.chomp.downcase == 'y' ? true : false
 
-    puts 'Enter the genre id:'
-    genre_id = gets.chomp.to_i
-    genre = @genre_operations.find_by_id(genre_id)
+    genre = @genre_operations.list
 
-    puts 'Enter the author id:'
-    author_id = gets.chomp.to_i
-    author = @author_operations.find_by_id(author_id)
+    author = @author_operations.list
 
-    puts 'Enter the source id:'
-    source_id = gets.chomp.to_i
-    source = @source_operations.find_by_id(source_id)
+    source = @source_operations.list
 
-    puts 'Enter the label id:'
-    label_id = gets.chomp.to_i
-    label = @label_operations.find_by_id(label_id)
+    label = @label_operations.list
 
-    publish_date = Date.today
+    puts 'Enter the publish date of the album (YYYY-MM-DD):'
+    publish_date_input = gets.chomp
+    publish_date = Date.parse(publish_date_input)
 
-    movie = Movie.new(genre, author, source, label, publish_date, name, silent)
+    movie = Movie.new('movie.json', genre, author, source, label, publish_date, silent)
     @movies << movie
     puts 'Movie added successfully'
   end
