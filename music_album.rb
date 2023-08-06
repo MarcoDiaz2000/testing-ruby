@@ -40,7 +40,7 @@ class MusicAlbum < Item
     on_spotify = object['on_spotify']
     archived = object['archived']
 
-    music_album = new(genre, author, source, label, publish_date, on_spotify, archived)
+    music_album = new('json_file', genre, author, source, label, publish_date, on_spotify, archived)
     music_album.instance_variable_set(:@id, object['id'])
     music_album
   end

@@ -11,8 +11,9 @@ class BookOperations
   def load_books
     if File.exist?('book.json')
       book_data = File.read('book.json')
-      JSON.parse(book_data, create_additions: true).each do |book|
-        @books << book
+      books_from_json = JSON.parse(book_data)
+      books_from_json.each do |book_hash|
+        @books << Book.json_create(book_hash)
       end
     else
       @books = []
@@ -40,7 +41,7 @@ class BookOperations
 
     label = @label_operations.list
   
-    puts 'Enter the publish date of the album (YYYY-MM-DD):'
+    puts 'Enter the publish date (YYYY-MM-DD):'
     publish_date_input = gets.chomp
     publish_date = Date.parse(publish_date_input)
   

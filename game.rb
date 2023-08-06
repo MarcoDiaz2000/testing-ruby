@@ -43,7 +43,7 @@ class Game < Item
     last_played_at = Date.parse(object['last_played_at'])
     archived = object['archived']
 
-    game = new(genre, author, source, label, publish_date, multiplayer, last_played_at, archived)
+    game = new('json_file', genre, author, source, label, publish_date, multiplayer, last_played_at, archived)
     game.instance_variable_set(:@id, object['id'])
     game
   end

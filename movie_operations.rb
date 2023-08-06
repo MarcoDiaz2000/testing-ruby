@@ -11,8 +11,9 @@ class MovieOperations
   def load_movies
     if File.exist?('movie.json')
       movie_data = File.read('movie.json')
-      JSON.parse(movie_data, create_additions: true).each do |movie|
-        @movies << movie
+      movies_from_json = JSON.parse(movie_data)
+      movies_from_json.each do |movie_hash|
+        @movies << Movie.json_create(movie_hash)
       end
     else
       @movies = []
@@ -38,7 +39,7 @@ class MovieOperations
 
     label = @label_operations.list
 
-    puts 'Enter the publish date of the album (YYYY-MM-DD):'
+    puts 'Enter the publish date (YYYY-MM-DD):'
     publish_date_input = gets.chomp
     publish_date = Date.parse(publish_date_input)
 

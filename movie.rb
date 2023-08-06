@@ -40,7 +40,7 @@ class Movie < Item
     silent = object['silent']
     archived = object['archived']
 
-    movie = new(genre, author, source, label, publish_date, silent, archived)
+    movie = new('json_file', genre, author, source, label, publish_date, silent, archived)
     movie.instance_variable_set(:@id, object['id'])
     movie
   end

@@ -1,11 +1,19 @@
 class Label
   attr_accessor :id, :title, :color_name, :items
 
+  @label_instances = [] 
+
+  class << self
+    attr_accessor :label_instances
+  end
+
   def initialize(title, color_name)
     @id = next_id
     @title = title
     @color_name = color_name
     @items = []
+    self.class.label_instances << self
+
   end
   
   def next_id
@@ -37,5 +45,9 @@ class Label
     label.instance_variable_set(:@id, object['id'])
     label.instance_variable_set(:@items, object['items'])
     label
+  end
+
+  def self.find_by_id(id)
+    label_instances.find { |label| label.id == id }
   end
 end

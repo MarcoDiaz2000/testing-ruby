@@ -42,11 +42,11 @@ class Book < Item
     publisher = object['publisher']
     cover_state = object['cover_state']
     archived = object['archived']
-
-    book = new(genre, author, source, label, publish_date, publisher, cover_state, archived)
+  
+    book = new('json_file', genre, author, source, label, publish_date, publisher, cover_state, archived)
     book.instance_variable_set(:@id, object['id'])
     book
-  end
+  end  
 
   def can_be_archived?
     super || @cover_state == 'bad'

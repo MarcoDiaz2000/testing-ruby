@@ -11,8 +11,9 @@ class GameOperations
   def load_games
     if File.exist?('game.json')
       game_data = File.read('game.json')
-      JSON.parse(game_data, create_additions: true).each do |game|
-        @games << game
+      game_from_json = JSON.parse(game_data)
+      game_from_json.each do |game_hash|
+        @games << Game.json_create(game_hash)
       end
     else
       @games = []
@@ -42,7 +43,7 @@ class GameOperations
 
     label = @label_operations.list
 
-    puts 'Enter the publish date of the album (YYYY-MM-DD):'
+    puts 'Enter the publish date (YYYY-MM-DD):'
     publish_date_input = gets.chomp
     publish_date = Date.parse(publish_date_input)
 

@@ -1,10 +1,17 @@
 class Source
   attr_accessor :id, :name, :items
 
+  @source_instances = []
+
+  class << self
+    attr_accessor :source_instances
+  end
+
   def initialize(name)
     @id = next_id
     @name = name
     @items = []
+    self.class.source_instances << self
   end
 
   def next_id
@@ -37,5 +44,9 @@ class Source
       source.add_item(Object.const_get(item_class_name).find_by_id(item_id))
     end
     source
+  end
+
+  def self.find_by_id(id)
+    source_instances.find { |source| source.id == id }
   end
 end

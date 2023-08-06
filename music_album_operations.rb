@@ -11,8 +11,9 @@ class MusicAlbumOperations
   def load_albums
     if File.exist?('musicAlbum.json')
       album_data = File.read('musicAlbum.json')
-      JSON.parse(album_data, create_additions: true).each do |album|
-        @albums << album
+      albums_from_json = JSON.parse(album_data)
+      albums_from_json.each do |album_hash|
+        @albums << MusicAlbum.json_create(album_hash)
       end
     else
       @albums = []
@@ -35,7 +36,7 @@ class MusicAlbumOperations
 
     label = @label_operations.list
 
-    puts 'Enter the publish date of the album (YYYY-MM-DD):'
+    puts 'Enter the publish date (YYYY-MM-DD):'
     publish_date_input = gets.chomp
     publish_date = Date.parse(publish_date_input)
 
