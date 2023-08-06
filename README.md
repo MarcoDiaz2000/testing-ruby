@@ -1,12 +1,13 @@
-<!-- TABLE OF CONTENTS --> 
+<a name="readme-top"></a>
 
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
-  - [📝 Description](#description)
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+  - [🚀 Live Demo](#live-demo)
+  - [🔭 Video Presentation](#video)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -15,37 +16,50 @@
   - [Run tests](#run-tests)
   - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [🙏 Acknowledgements](#acknowledgements)
-- [❓ FAQ](#faq)
+- [❓ FAQ (OPTIONAL)](#faq)
 - [📝 License](#license)
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 OOP School Library <a name="about-project"></a>
+# 📖 [Ruby group capstone - Catalog of my things] <a name="about-project"></a>
 
-**OOP School Library** In this project, we will build an application to help manage the library of OOP University. We will be able to add new students, teachers, and books, as well as keep track of who borrowed which book and when.
+**[Learning objectives]**
+
+This project is about creating a console app that helps manage collections of different types of things owned, such as books, music albums, movies, and games. All the data will be based on the UML class diagram provided. The data will be stored in JSON files, but a database with tables structure analogical to the program's class structure is also prepared.
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 
-<details>
-<summary>Ruby</summary>
-  <ul>
-    <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
-  </ul>
-</details>
-
-<!-- Features -->
+- Ruby
+- JSON
+- SQL
 
 ### Key Features <a name="key-features"></a>
 
-- **Add new students or teachers**
-- **Add new books**
-- **Save records of who borrowed a given book and when**
+The application provides a variety of features for managing a catalog:
+
+- Add items to the catalog (Books, Music Albums, Movies, Games)
+- View lists of different items
+- Archive items based on various conditions
+- List additional attributes like genres, labels, authors, and sources.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LIVE DEMO -->
+
+## 🚀 Live Demo <a name="live-demo"></a>
+
+- [Live Demo Link](#) _(enlace pendiente)_
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🔭 Video Presentation <a name="video"></a>
+
+- [Video Presentation](#) _(enlace pendiente)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -53,42 +67,35 @@
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-To get a local copy up and running, follow these steps.
-
 ### Prerequisites
 
-In order to run this project you need:
+Ensure you have the following installed:
 
-- Ruby
+- [Ruby](https://www.ruby-lang.org/en/)
+- [Git](https://git-scm.com/downloads)
 
 ### Setup
 
-Clone this repository to your desired folder:
+Clone the project:
 
-Example commands:
-
-  cd my-folder
-  git clone https://github.com/MarcoDiaz2000/oop-school-library.git
+<pre> git clone [enlace_del_repo] </pre>
 
 ### Install
 
-This project doesn't require any special installation steps. Just make sure Ruby is installed on your machine.
+Navigate into the directory and install the necessary gems:
+
+<pre>
+cd [nombre_del_proyecto]
+bundle install
+</pre>
 
 ### Usage
 
-To run the project, navigate to the directory of the project and run:
+Run the application:
 
-  ruby main.rb
-
-### Run tests
-
-To run the tests for this project, navigate to the directory of the project and run:
-
-  rspec
-
-### Deployment
-
-This project doesn't require any special deployment steps. 
+<pre>
+ruby main.rb
+</pre>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -104,22 +111,13 @@ This project doesn't require any special deployment steps.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- FUTURE FEATURES -->
-
-## 🔭 Future Features <a name="future-features"></a>
-
-- [ ] **Add unit tests**
-- [ ] **Add data preservation**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- CONTRIBUTING -->
 
-## 🤝 Contributing <a name="contributing"></a> 
+## 🤝 Contributing <a name="contributing"></a>
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Check the [issues page](../../issues/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -127,7 +125,7 @@ Feel free to check the [issues page](../../issues/).
 
 ## ⭐️ Show your support <a name="support"></a>
 
-Give a ⭐️ if you like this project!
+If you found this project helpful, consider giving a ⭐️!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -135,7 +133,7 @@ Give a ⭐️ if you like this project!
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank Microverse for providing the opportunity to work on this project.
+Gratitude to all contributors and educators for the invaluable resources.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
