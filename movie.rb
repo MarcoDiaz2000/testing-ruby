@@ -10,6 +10,7 @@ class Movie < Item
   def initialize(json_file, genre, author, source, label, publish_date, silent, archived = false)
     super(json_file, genre, author, source, label, publish_date, archived)
     @silent = silent
+    move_to_archive
     self.class.movie_instances << self
   end
 

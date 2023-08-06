@@ -10,6 +10,7 @@ class MusicAlbum < Item
   def initialize(json_file, genre, author, source, label, publish_date, on_spotify, archived = false)
     super(json_file, genre, author, source, label, publish_date, archived)
     @on_spotify = on_spotify
+    move_to_archive
     self.class.music_album_instances << self
   end
 

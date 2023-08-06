@@ -11,6 +11,7 @@ class Book < Item
     super(json_file, genre, author, source, label, publish_date, archived)
     @publisher = publisher
     @cover_state = cover_state
+    move_to_archive
     self.class.book_instances << self
   end
 

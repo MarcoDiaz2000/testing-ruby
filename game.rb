@@ -11,6 +11,7 @@ class Game < Item
     super(json_file, genre, author, source, label, publish_date, archived)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
+    move_to_archive
     self.class.game_instances << self
   end
 
