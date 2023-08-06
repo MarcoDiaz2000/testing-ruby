@@ -18,17 +18,17 @@ class AuthorOperations
   def list
     if @authors.empty?
       puts 'The next step is to select an author, but the list is empty, please create a new author.'
-      create
     else
       @authors.each { |author| puts "ID: #{author.id}, Name: #{author.first_name} #{author.last_name}" }
       puts 'Enter 0 to create a new author.'
       input = gets.chomp.to_i
-      if input == 0
-        create
-      else
-        return @authors.find { |author| author.id == input }
-      end
+      return @authors.find { |author| author.id == input } unless input.zero?
+
+
+
+
     end
+    create
   end
 
   def create

@@ -7,9 +7,9 @@ class Movie < Item
     attr_accessor :movie_instances
   end
 
-  def initialize(json_file, genre, author, source, label, publish_date, silent, archived = false)
-    super(json_file, genre, author, source, label, publish_date, archived)
-    @silent = silent
+  def initialize(params)
+    super(params)
+    @silent = params[:silent]
     move_to_archive
     self.class.movie_instances << self
   end
@@ -28,22 +28,29 @@ class Movie < Item
       'label' => @label.id,
       'publish_date' => @publish_date,
       'archived' => @archived,
-      'silent' => @silent,
+      'silent' => @silent
     }.to_json(*args)
   end
 
   def self.json_create(object)
-    genre = Genre.find_by_id(object['genre'])
-    author = Author.find_by_id(object['author'])
-    source = Source.find_by_id(object['source'])
-    label = Label.find_by_id(object['label'])
-    publish_date = Date.parse(object['publish_date'])
-    silent = object['silent']
-    archived = object['archived']
+    params = extract_params_from_json(object)
 
-    movie = new('json_file', genre, author, source, label, publish_date, silent, archived)
+    movie = new(params)
     movie.instance_variable_set(:@id, object['id'])
     movie
+  end
+
+  def self.extract_params_from_json(object)
+    {
+      json_file: 'json_file',
+      genre: Genre.find_by_id(object['genre']),
+      author: Author.find_by_id(object['author']),
+      source: Source.find_by_id(object['source']),
+      label: Label.find_by_id(object['label']),
+      publish_date: Date.parse(object['publish_date']),
+      silent: object['silent'],
+      archived: object['archived']
+    }
   end
 
   def can_be_archived?

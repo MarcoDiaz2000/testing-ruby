@@ -18,17 +18,17 @@ class LabelOperations
   def list
     if @labels.empty?
       puts 'The next step is to select a label, but the list is empty, please create a new label.'
-      create
     else
       @labels.each { |label| puts "ID: #{label.id}, Title: #{label.title}" }
       puts 'Enter 0 to create a new label.'
       input = gets.chomp.to_i
-      if input == 0
-        create
-      else
-        return @labels.find { |label| label.id == input }
-      end
+      return @labels.find { |label| label.id == input } unless input.zero?
+
+
+
+
     end
+    create
   end
 
   def create

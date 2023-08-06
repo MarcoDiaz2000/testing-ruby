@@ -18,17 +18,17 @@ class SourceOperations
   def list
     if @sources.empty?
       puts 'The next step is to select a source, but the list is empty, please create a new source.'
-      create
     else
       @sources.each { |source| puts "ID: #{source.id}, Name: #{source.name}" }
       puts 'Enter 0 to create a new source.'
       input = gets.chomp.to_i
-      if input == 0
-        create
-      else
-        return @sources.find { |source| source.id == input }
-      end
+      return @sources.find { |source| source.id == input } unless input.zero?
+
+
+
+
     end
+    create
   end
 
   def create

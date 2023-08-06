@@ -1,7 +1,7 @@
 class Label
   attr_accessor :id, :title, :color_name, :items
 
-  @label_instances = [] 
+  @label_instances = []
 
   class << self
     attr_accessor :label_instances
@@ -13,14 +13,13 @@ class Label
     @color_name = color_name
     @items = []
     self.class.label_instances << self
-
   end
-  
+
   def next_id
     file = File.read('label.json')
     labels = JSON.parse(file)
     return 1 if labels.empty?
-  
+
     max_id = labels.max_by { |l| l['id'] }['id']
     max_id + 1
   end

@@ -13,12 +13,12 @@ class Genre
     @items = []
     self.class.genre_instances << self
   end
-  
+
   def next_id
     file = File.read('genre.json')
     genres = JSON.parse(file)
     return 1 if genres.empty?
-  
+
     max_id = genres.max_by { |g| g['id'] }['id']
     max_id + 1
   end
@@ -26,7 +26,7 @@ class Genre
   def details
     "ID: #{@id}, Name: #{@name}"
   end
-  
+
   def self.find_by_id(id)
     genre_instances.find { |genre| genre.id == id }
   end

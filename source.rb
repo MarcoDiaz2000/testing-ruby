@@ -18,7 +18,7 @@ class Source
     file = File.read('source.json')
     sources = JSON.parse(file)
     return 1 if sources.empty?
-  
+
     max_id = sources.max_by { |s| s['id'] }['id']
     max_id + 1
   end

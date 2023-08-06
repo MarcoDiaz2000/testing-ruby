@@ -19,7 +19,7 @@ class Author
     file = File.read('author.json')
     authors = JSON.parse(file)
     return 1 if authors.empty?
-  
+
     max_id = authors.max_by { |a| a['id'] }['id']
     max_id + 1
   end

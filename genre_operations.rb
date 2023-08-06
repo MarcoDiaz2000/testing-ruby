@@ -17,20 +17,18 @@ class GenreOperations
   def list
     if @genres.empty?
       puts 'The next step is to select an genre, but the list is empty, please create a new genre.'
-      create
     else
       @genres.each { |genre| puts "ID: #{genre.id}, Name: #{genre.name}" }
       puts 'Enter 0 to create a new genre.'
       input = gets.chomp.to_i
-      if input == 0
-        create
-      else
-        return @genres.find { |genre| genre.id == input }
-      end
+      return @genres.find { |genre| genre.id == input } unless input.zero?
+
+
+
+
     end
+    create
   end
-  
-  
 
   def create
     puts 'Enter the new genre:'

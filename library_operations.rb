@@ -42,8 +42,10 @@ class LibraryOperations
     @author_operations = AuthorOperations.new
     @source_operations = SourceOperations.new
     @book_operations = BookOperations.new(@genre_operations, @label_operations, @author_operations, @source_operations)
-    @music_album_operations = MusicAlbumOperations.new(@genre_operations, @label_operations, @author_operations, @source_operations)
-    @movie_operations = MovieOperations.new(@genre_operations, @label_operations, @author_operations, @source_operations)
+    @music_album_operations = MusicAlbumOperations.new(@genre_operations, @label_operations, @author_operations,
+                                                       @source_operations)
+    @movie_operations = MovieOperations.new(@genre_operations, @label_operations, @author_operations,
+                                            @source_operations)
     @game_operations = GameOperations.new(@genre_operations, @label_operations, @author_operations, @source_operations)
   end
 
@@ -96,7 +98,6 @@ class LibraryOperations
   end
 
   def exit_program
-
     @book_operations.save
     @music_album_operations.save
     @movie_operations.save

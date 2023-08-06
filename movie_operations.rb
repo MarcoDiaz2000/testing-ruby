@@ -21,31 +21,45 @@ class MovieOperations
   end
 
   def list
-    @movies.each do |movie| 
-      puts "id: #{movie.id} - Silence: #{movie.silent ? 'Yes' : 'No'} - Genre: #{movie.genre.name} - Author: #{movie.author.first_name} #{movie.author.last_name} - Source: #{movie.source.name} - Label: #{movie.label.title} #{movie.label.color_name} - Published: #{movie.publish_date}"
+    @movies.each do |movie|
+      puts "id: #{movie.id} - Silence: #{movie.silent ? 'Yes' : 'No'} - " \
+           "Genre: #{movie.genre.name} - Author: #{movie.author.first_name} #{movie.author.last_name} " \
+           "- Source: #{movie.source.name} - Label: #{movie.label.title} #{movie.label.color_name} - " \
+           "Published: #{movie.publish_date}"
     end
   end
-  
 
   def add
-    puts 'Is the movie silent? (Y/N):'
-    silent = gets.chomp.downcase == 'y' ? true : false
-
+    silent = request_silent
     genre = @genre_operations.list
-
     author = @author_operations.list
-
     source = @source_operations.list
-
     label = @label_operations.list
+    publish_date = request_publish_date
 
-    puts 'Enter the publish date (YYYY-MM-DD):'
-    publish_date_input = gets.chomp
-    publish_date = Date.parse(publish_date_input)
+    movie_params = {
+      json_file: 'movie.json',
+      genre: genre,
+      author: author,
+      source: source,
+      label: label,
+      publish_date: publish_date,
+      silent: silent
+    }
 
-    movie = Movie.new('movie.json', genre, author, source, label, publish_date, silent)
+    movie = Movie.new(movie_params)
     @movies << movie
     puts 'Movie added successfully'
+  end
+
+  def request_silent
+    puts 'Is the movie silent? (Y/N):'
+    gets.chomp.downcase == 'y'
+  end
+
+  def request_publish_date
+    puts 'Enter the publish date (YYYY-MM-DD):'
+    Date.parse(gets.chomp)
   end
 
   def save
